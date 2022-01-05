@@ -5,10 +5,11 @@ import { container } from 'tsyringe';
 import { CreateSpecificationUseCase } from './CreateSpecificationUseCase';
 
 class CreateSpecificationController {
-  handle(request: Request, response: Response) {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { name, description } = request.body;
     const createSpecificationUseCase = container.resolve(CreateSpecificationUseCase);
-    createSpecificationUseCase.execute({ name, description });
+
+    await createSpecificationUseCase.execute({ name, description });
 
     console.log('post: http://localhost:3333/specifications');
 
