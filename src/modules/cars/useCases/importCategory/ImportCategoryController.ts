@@ -12,7 +12,7 @@ class ImportCategoryController {
 
     console.log('post: http://localhost:3333/categories/import');
 
-    return response.send();
+    return response.status(201).send();
   }
 }
 
