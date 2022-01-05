@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
+import 'reflect-metadata';
+import { container } from 'tsyringe';
 
 import { ListCategoriesUseCase } from './ListCategoriesUseCase';
 
 class ListCategoriesController {
-  constructor(private listCreateCategoryUseCase: ListCategoriesUseCase) { }
-  handle(request: Request, response: Response): Response {
+  async handle(request: Request, response: Response): Promise<Response> {
     console.log('get: http://localhost:3333/categories');
-
-    return response.json(this.listCreateCategoryUseCase.execute());
+    const listCreateCategoryUseCase = container.resolve(ListCategoriesUseCase);
+    return response.json(await listCreateCategoryUseCase.execute());
   }
 }
 
