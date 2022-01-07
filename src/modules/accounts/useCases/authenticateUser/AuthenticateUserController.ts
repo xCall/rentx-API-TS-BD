@@ -1,0 +1,6 @@
+
+
+class AuthenticateUserControler {
+  
+}
+export { AuthenticateUserControler };
