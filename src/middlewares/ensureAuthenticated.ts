@@ -5,7 +5,7 @@ import { AppError } from '../errors/AppError';
 import { UsersRepository } from '../modules/accounts/repositories/implementations/UsersRepository';
 
 interface IPayload {
-  sub: string
+  sub: string;
 }
 
 export async function ensureAuthenticated(
@@ -22,7 +22,10 @@ export async function ensureAuthenticated(
   const [, token] = authHeader.split(' ');
 
   try {
-    const { sub: user_id } = verify(token, 'b56db73d20d2d4b374aae5e5c86b58f6') as IPayload;
+    const { sub: user_id } = verify(
+      token,
+      'b56db73d20d2d4b374aae5e5c86b58f6',
+    ) as IPayload;
 
     const usersRepository = new UsersRepository();
 

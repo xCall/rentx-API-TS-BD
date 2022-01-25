@@ -16,10 +16,21 @@ const createCategoryController = new CreateCategoryController();
 const importCategoryController = new ImportCategoryController();
 const listCategoriesController = new ListCategoriesController();
 
-categoriesRoutes.post('/', ensureAuthenticated, createCategoryController.handle);
+categoriesRoutes.post(
+  '/',
+  ensureAuthenticated,
+  createCategoryController.handle,
+);
 
-categoriesRoutes.get('/', ensureAuthenticated, (request, response) => listCategoriesController.handle(request, response));
+categoriesRoutes.get('/', ensureAuthenticated, (request, response) =>
+  listCategoriesController.handle(request, response),
+);
 
-categoriesRoutes.post('/import', ensureAuthenticated, upload.single('file'), importCategoryController.handle);
+categoriesRoutes.post(
+  '/import',
+  ensureAuthenticated,
+  upload.single('file'),
+  importCategoryController.handle,
+);
 
 export { categoriesRoutes };
