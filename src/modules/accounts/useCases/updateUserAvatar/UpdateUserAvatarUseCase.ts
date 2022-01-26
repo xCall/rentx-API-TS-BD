@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
-import { deleteFile } from '../../../../utils/file';
-import { UsersRepository } from '../../repositories/implementations/UsersRepository';
+import { UsersRepository } from '@modules/accounts/repositories/implementations/UsersRepository';
+import { deleteFile } from '@utils/file';
 
 interface IRequest {
   user_id: string;

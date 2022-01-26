@@ -1,6 +1,6 @@
 import { AppError } from '../../../../errors/AppError';
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
-import { UsersRepositoryInMemory } from '../../repositories/in-memory/UsersRepositoryInMemory';
+import { UsersRepositoryInMemory } from '../../repositories/in-memory/UsersRepositoryInMemori';
 import { CreateUserUseCase } from '../CreateUser/CreateUserUseCase';
 import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 
@@ -53,7 +53,6 @@ describe('Authenticate User', () => {
         email: user.email,
         password: 'incorrectpassword',
       });
-
     }).rejects.toBeInstanceOf(AppError);
-  })
+  });
 });
