@@ -1,20 +1,22 @@
+import 'reflect-metadata';
+import { inject, injectable } from 'tsyringe';
+
 import { Car } from '@modules/cars/infra/typeorm/entities/Car';
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { ISpecificationsRepository } from '@modules/cars/repositories/ISpecificationRepository';
 import { AppError } from '@shared/errors/AppError';
-import 'reflect-metadata';
-// import { inject, injectable } from 'tsyringe';
 
 interface IRequest {
   car_id: string;
   specification_id: string[];
 }
 
-// @injectable()
+@injectable()
 class CreateCarSpecificationUseCase {
   constructor(
-    // @inject('carsRepository')
+    @inject('CarsRepository')
     private carsRepository: ICarsRepository,
+    @inject('SpecificationsRepository')
     private specificationsRepository: ISpecificationsRepository,
   ) {}
 
