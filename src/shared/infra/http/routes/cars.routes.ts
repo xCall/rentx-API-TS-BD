@@ -19,7 +19,12 @@ carsRoutes.post(
   createCarConntroller.handle,
 );
 
-carsRoutes.post('/specifications/:id', createCarSpecificationController.handle);
+carsRoutes.post(
+  '/specifications/:id',
+  ensureAuthenticated,
+  ensureAdmin,
+  createCarSpecificationController.handle,
+);
 
 carsRoutes.get('/available', listAvailableCarsController.handle);
 
