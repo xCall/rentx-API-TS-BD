@@ -12,7 +12,7 @@ services:
       - POSTGRES_PASSWORD=1324
       - POSTGRES_DB=rentx
     volumes:
-      - pgdata:/data/postgres
+      - ./pgdata:/data/postgres
   app:
     build: .
     container_name: rentx
