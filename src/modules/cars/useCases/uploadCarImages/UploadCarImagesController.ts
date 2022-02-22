@@ -2,27 +2,26 @@ import { Request, Response } from 'express';
 import 'reflect-metadata';
 import { container } from 'tsyringe';
 
-import { UploadCarImageUseCase } from './UploadCarImageUseCase';
+import { UploadCarImagesUseCase } from './UploadCarImagesUseCase';
 
 interface IFiles {
   filename: string;
 }
 
-class UploadCarImageController {
+class UploadCarImagesController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
     const images = request.files as IFiles[];
-    const uploadCarImageUseCase = container.resolve(UploadCarImageUseCase);
+    const uploadCarImagsUseCase = container.resolve(UploadCarImagesUseCase);
 
     const images_name = images.map(file => file.filename);
 
-    await uploadCarImageUseCase.execute({
+    await uploadCarImagsUseCase.execute({
       car_id: id,
       images_name,
     });
 
-
     return response.status(201).send();
   }
 }
-export { UploadCarImageController };
+export { UploadCarImagesController };
