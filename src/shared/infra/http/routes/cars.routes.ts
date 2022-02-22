@@ -6,17 +6,25 @@ import { ListAvailableCarsController } from '@modules/cars/useCases/listAvailabl
 
 import { ensureAdmin } from '../middlewares/ensureAdmin';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
+import { UploadCarImagesController } from '@modules/cars/useCases/uploadCarImages/UploadCarImagesController';
 
 const carsRoutes = Router();
 const createCarConntroller = new CreateCarController();
 const listAvailableCarsController = new ListAvailableCarsController();
 const createCarSpecificationController = new CreateCarSpecificationController();
+const uploadCarImagesController = new UploadCarImagesController();
 
 carsRoutes.post(
   '/',
   ensureAuthenticated,
   ensureAdmin,
   createCarConntroller.handle,
+);
+
+carsRoutes.post('/images',
+  ensureAuthenticated,
+  ensureAdmin,
+  uploadCarImagesController.handle
 );
 
 carsRoutes.post(
