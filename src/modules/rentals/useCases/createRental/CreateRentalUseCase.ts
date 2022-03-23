@@ -58,6 +58,3 @@ class CreateRentalUseCase {
 }
 
 export { CreateRentalUseCase };
-function dayjs(): Date {
-  throw new Error('Function not implemented.');
-}

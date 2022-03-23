@@ -1,5 +1,5 @@
 import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO';
-import { UsersRepositoryInMemory } from '@modules/accounts/repositories/in-memory/UsersRepositoryInMemori';
+import { UsersRepositoryInMemory } from '@modules/accounts/repositories/in-memory/UsersRepositoryInMemory';
 import { AppError } from '@shared/errors/AppError';
 
 import { CreateUserUseCase } from '../CreateUser/CreateUserUseCase';
@@ -17,7 +17,7 @@ describe('Authenticate User', () => {
     );
     createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
   });
-  it('shold be able to authenticate an user', async () => {
+  it('should be able to authenticate an user', async () => {
     const user: ICreateUserDTO = {
       driver_license: '00123',
       email: 'user@teste.com',
@@ -52,7 +52,7 @@ describe('Authenticate User', () => {
       await createUserUseCase.execute(user);
       await authenticateUserUseCase.execute({
         email: user.email,
-        password: 'incorrectpassword',
+        password: 'incorrect password',
       });
     }).rejects.toBeInstanceOf(AppError);
   });
