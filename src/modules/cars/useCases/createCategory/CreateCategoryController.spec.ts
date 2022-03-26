@@ -4,7 +4,7 @@ import { Connection } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 import { app } from '@shared/infra/http/app';
-import createConnection from '@shared/infra/typeorm/index';
+import createConnection from '@shared/infra/typeorm';
 
 let connection: Connection;
 
@@ -19,7 +19,6 @@ describe('Create Category Controller', () => {
         values('${id}', 'admin', 'admin@rentx.com.br', '${password}', true, 'now()', 'XXXXXX')
       `,
     );
-    await connection.close();
   });
 
   afterAll(async () => {
@@ -32,12 +31,18 @@ describe('Create Category Controller', () => {
       email: 'admin@rentx.com.br',
       password: 'admin',
     });
-    console.log(responseToken.body);
-    const response = await request(app).post('/categories').send({
-      name: 'Category Supertest',
-      description: 'Category Supertest',
-    });
+    const { token } = responseToken.body;
 
+    const response = await request(app)
+      .post('/categories')
+      .send({
+        name: 'Category Supertest',
+        description: 'Category Supertest',
+      })
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
+    console.log(responseToken.body);
     expect(response.status).toBe(201);
   });
 });
