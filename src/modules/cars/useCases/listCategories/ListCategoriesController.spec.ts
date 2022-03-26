@@ -16,7 +16,7 @@ describe('List Category Controller', () => {
     const id = uuid();
     await connection.query(
       `INSERT INTO USERS(id, name, email, password, "isAdmin", created_at, driver_license )
-        values('${id}', 'admin', 'admin@rentx.com.br', '${password}', true, 'now()', 'XXXXXX')
+        values('${id}', 'admin', 'admin2@rentx.com.br', '${password}', true, 'now()', 'XXXXXX')
       `,
     );
   });
@@ -28,7 +28,7 @@ describe('List Category Controller', () => {
 
   it('should be able list all categories', async () => {
     const responseToken = await request(app).post('/sessions').send({
-      email: 'admin@rentx.com.br',
+      email: 'admin2@rentx.com.br',
       password: 'admin',
     });
 
@@ -44,9 +44,9 @@ describe('List Category Controller', () => {
         Authorization: `Bearer ${token}`,
       });
     const response = await request(app).get('/categories');
-    const teste = response.status;
 
-    const test2 = teste;
+    console.log(responseToken.body);
+
     expect(response.status).toBe(200);
     expect(response.body.length).toBe(1);
     expect(response.body[0]).toHaveProperty('id');
