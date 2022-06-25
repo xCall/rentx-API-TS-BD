@@ -62,7 +62,7 @@ class CreateRentalUseCase {
       expected_return_date,
     });
 
-    awati this.carsRepository.
+    await this.carsRepository.updateAvailable(car_id, false);
     return rental;
   }
 }
