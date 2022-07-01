@@ -70,13 +70,13 @@ describe('Create Rental', () => {
       user_id: '12345',
     });
 
-    expect(
-      await createRentalUseCase.execute({
+    await expect(
+      createRentalUseCase.execute({
         user_id: '321',
         car_id: 'test',
         expected_return_date: dayAdd24Hours,
       }),
-    ).rejects.toEqual(new AppError('Car is unavailable'));
+    ).rejects.toEqual(new AppError('Car is unavailable!'));
   });
 
   it('should not be able to create a new rental with invalid return time ', async () => {
