@@ -4,7 +4,7 @@ import { container } from 'tsyringe';
 
 import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 
-class AuthenticateUserControler {
+class AuthenticateUserController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { email, password } = request.body;
 
@@ -17,4 +17,4 @@ class AuthenticateUserControler {
     return response.json(token);
   }
 }
-export { AuthenticateUserControler };
+export { AuthenticateUserController };

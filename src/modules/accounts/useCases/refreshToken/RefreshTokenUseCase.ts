@@ -1,5 +1,5 @@
 import { sign, verify } from 'jsonwebtoken';
-import { inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 
 import auth from '@config/auth';
 import { IUsersTokenRepository } from '@modules/accounts/repositories/IUsersTokenRepository';
@@ -11,6 +11,7 @@ interface IPayload {
   email: string;
 }
 
+@injectable()
 class RefreshTokenUseCase {
   constructor(
     @inject('UsersTokensRepository')
@@ -32,7 +33,7 @@ class RefreshTokenUseCase {
 
     await this.usersTokensRepository.deleteById(userToken.id);
 
-    const refresh_token_expire_date = this.dateProvider.addDays(
+    const expires_date = this.dateProvider.addDays(
       auth.expires_refresh_token_days,
     );
 
