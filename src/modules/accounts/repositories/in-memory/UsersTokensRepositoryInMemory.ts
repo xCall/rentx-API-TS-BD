@@ -4,7 +4,7 @@ import { UserTokens } from '@modules/accounts/infra/typeorm/entities/UserTokens'
 import { IUsersTokenRepository } from '../IUsersTokenRepository';
 
 class UsersTokensRepositoryInMemory implements IUsersTokenRepository {
-  private usersTokens: UserTokens[] = [];
+  public usersTokens: UserTokens[] = [];
 
   async create({
     expires_date,
